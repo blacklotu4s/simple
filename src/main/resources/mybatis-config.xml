@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//MyBatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J" />
+        <!--其他配置-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="tk.mybatis.simple.model" />
+    </typeAliases>
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="tk.mybatis.simple.type.Enabled"/>-->
+<!--    </typeHandlers>-->
+
+    <typeHandlers>
+        <typeHandler handler="tk.mybatis.simple.type.EnabledTypeHandler" javaType="tk.mybatis.simple.type.Enabled"/>
+    </typeHandlers>
+
+    <plugins>
+<!--        <plugin interceptor="tk.mybatis.simple.plugin.CameHumpInterceptor"></plugin>-->
+        <plugin interceptor="tk.mybatis.simple.plugin.PageInterceptor">
+            <property name="dialect" value="tk.mybatis.simple.plugin.MysqlDialect"/>
+        </plugin>
+    </plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value="" />
+            </transactionManager>
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+<!--                <property name="driver" value="com.mysql.jdbc.Driver" />-->
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8&amp;serverTimezone=UTC" />
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8&amp;serverTimezone=UTC" />-->
+                <property name="username" value="root" />
+<!--                <property name="password" value="Y6217X5hxd" />-->
+                <property name="password" value="Y6217X5" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="MySQL" value="mysql"/>
+        <property name="PostgreSQL" value="postgresql"/>
+        <property name="Derby" value="derby"/>
+        <property name="HSQL" value="hsqldb"/>
+        <property name="H2" value="h2"/>
+    </databaseIdProvider>
+
+    <mappers>
+<!--        <mapper resource="tk/mybatis/simple/mapper/CountryMapper.xml" />-->
+<!--        <mapper resource="tk/mybatis/simple/mapper/UserMapper.xml" />-->
+<!--        <mapper resource="tk/mybatis/simple/mapper/RoleMapper.xml" />-->
+<!--        <mapper resource="tk/mybatis/simple/mapper/PrivilegeMapper.xml" />-->
+<!--        <mapper resource="tk/mybatis/simple/mapper/UserRoleMapper.xml" />-->
+<!--        <mapper resource="tk/mybatis/simple/mapper/RolePrivilegeMapper.xml" />-->
+        <package name="tk.mybatis.simple.mapper" />
+    </mappers>
+
+
+</configuration>
+
+
